@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
+// TESTING
 public class WAR_starter {
     public static void main(String[] args){
 
