@@ -10,5 +10,7 @@ Each player with place 3 cards facedown, and 1 card faceup. The person that has 
 The game goes on until one player has won all of the cards in the deck.
 
 Progress:
-Currently, the program is able to generate a random card number, and convert that number into the suit and value of the card.
-However, I still need to add the comparision between the user and computer cards, and case senario for when the cards are of equal value.
+Currently, the program is mostly finished content wise.
+It is able to generate cards, compare them, and keep track of how many remaining cards the user and computer has.
+
+Possible future updates: Changing some formatting, write code for when a 'war' is declared inside another 'war', find more efficent ways to write the code.
