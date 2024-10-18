@@ -8,106 +8,130 @@ public class WAR_starter {
         // Opened scanner, and started main while loop
         Scanner scanner = new Scanner(System.in);
         String again = "y";
-        while (again.equals("y")){
-
-            // Generation of 2 random cards (1-52)
-            Random rand = new Random();
-            int computerCARD = rand.nextInt(52);
-            int userCARD = rand.nextInt(52); 
-            // Makes sure random number is not 0
-            if(computerCARD == 0){
-                computerCARD += 1;
-            }
-            if(userCARD == 0){
-                userCARD += 1;
-            }
-
-            //Converts card number into suit and number for user card
-            System.out.println(userCARD);
-            char usuit = 'x';
-            int unum = 0;
-            
-            // Cards 1 - 13 are Clubs
-            if(userCARD <= 13){
-                usuit = 'C';
-                unum = userCARD;
-            }
+        int cardstaken = 1;
+        int usercards = 26;
+        int computercards = 26;
+        while (usercards > 0 && computercards > 0){
+            while (again.equals("y")){
+    
+                // Generation of 2 random cards (1-52)
+                Random rand = new Random();
+                int computerCARD = rand.nextInt(52);
+                int userCARD = rand.nextInt(52); 
+                // Makes sure random number is not 0
+                if(computerCARD == 0){
+                    computerCARD += 1;
+                }
+                if(userCARD == 0){
+                    userCARD += 1;
+                }
+    
+                //Converts card number into suit and number for user card
+                System.out.println(userCARD);
+                char usuit = 'x';
+                int unum = 0;
                 
-            // Cards 14 - 26 are Diamonds
-            else if(userCARD <= 26){
-                usuit = 'D';
-                unum = userCARD - 13;
-            }
+                // Cards 1 - 13 are Clubs
+                if(userCARD <= 13){
+                    usuit = 'C';
+                    unum = userCARD;
+                }
+                    
+                // Cards 14 - 26 are Diamonds
+                else if(userCARD <= 26){
+                    usuit = 'D';
+                    unum = userCARD - 13;
+                }
+                    
+                // Cards 27 - 39 are Hearts
+                else if(userCARD <= 39){
+                    usuit = 'H';
+                    unum = userCARD - 26;
+                }
+    
+                // Cards 40 - 52 are Spades
+                else if(userCARD <= 52){
+                    usuit = 'S';
+                    unum = userCARD - 39;
+                }
+                String ucard = usuit+String.valueOf(unum);
+    
+                // Converts card number into suit and number for computer card
+                System.out.println(computerCARD);
+                char csuit = 'x';
+                int cnum = 0;
+    
+                // Cards 1 - 13 are Clubs
+                if(computerCARD <= 13){
+                    csuit = 'C';
+                    cnum = computerCARD;
+                }
+    
+                // Cards 14 - 26 are Diamonds
+                else if(computerCARD <= 26){
+                    csuit = 'D';
+                    cnum = computerCARD - 13;
+                }
+    
+                // Cards 27 - 39 are Hearts
+                else if(computerCARD <= 39){
+                    csuit = 'H';
+                    cnum = computerCARD - 26;
+                }
+    
+                // Cards 40 - 52 are Spades
+                else if(computerCARD <= 52){
+                    csuit = 'S';
+                    cnum = computerCARD - 39;
+                }
+                String ccard = csuit+String.valueOf(cnum);
+                System.out.println("ComputerCARD is "+csuit+cnum);
+    
+                // Final send of 2 cards value (suit + value) to be outputted as ASCII cards
+                printAsciiEval(ccard, ucard);
+    
+                // Checks if user card value is greater than computer card value
+                if (unum > cnum){
+                    System.out.println("User wins!");
+                    usercards += cardstaken;
+                    computercards -= cardstaken;
+                    System.out.println("User gains "+ String.valueOf(cardstaken) + " cards.");
+                    System.out.println("Computer loses "+ String.valueOf(cardstaken) + " cards.");
+                }
+    
+                // Checks if computer card value is greater than user card value
+                else if (cnum > unum){
+                    System.out.println("Computer wins!");
+                    computercards += cardstaken;
+                    usercards -= cardstaken;
+                    System.out.println("Computer gains "+ String.valueOf(cardstaken) + " cards.");
+                    System.out.println("User loses "+ String.valueOf(cardstaken) + " cards.");
+                }
+
+                cardstaken = 1;
                 
-            // Cards 27 - 39 are Hearts
-            else if(userCARD <= 39){
-                usuit = 'H';
-                unum = userCARD - 26;
+                // Checks if user card value and computer card value is equal
+                // If so, declare a 'war'
+                if (unum == cnum){
+                    System.out.println("User and computer cards are equal!");
+                    System.out.println("A war has started, 4 cards have been placed face-down.");
+                    System.out.println("The winner of the next two cards will take all.");
+                    cardstaken = 5;
+                }
+
+                System.out.println();
+                System.out.println("User currently has " + String.valueOf(usercards) + "cards.");
+                System.out.println("Computer currently has " + String.valueOf(computercards) + "cards.");
+                System.out.println();
+                
+                
+    
+                // Asks user if they want to play again, which determines if it loops again or not
+                System.out.println("Type y to continue to next round.");
+                again = scanner.nextLine();
             }
-
-            // Cards 40 - 52 are Spades
-            else if(userCARD <= 52){
-                usuit = 'S';
-                unum = userCARD - 39;
-            }
-            String ucard = usuit+String.valueOf(unum);
-
-            // Converts card number into suit and number for computer card
-            System.out.println(computerCARD);
-            char csuit = 'x';
-            int cnum = 0;
-
-            // Cards 1 - 13 are Clubs
-            if(computerCARD <= 13){
-                csuit = 'C';
-                cnum = computerCARD;
-            }
-
-            // Cards 14 - 26 are Diamonds
-            else if(computerCARD <= 26){
-                csuit = 'D';
-                cnum = computerCARD - 13;
-            }
-
-            // Cards 27 - 39 are Hearts
-            else if(computerCARD <= 39){
-                csuit = 'H';
-                cnum = computerCARD - 26;
-            }
-
-            // Cards 40 - 52 are Spades
-            else if(computerCARD <= 52){
-                csuit = 'S';
-                cnum = computerCARD - 39;
-            }
-            String ccard = csuit+String.valueOf(cnum);
-            System.out.println("ComputerCARD is "+csuit+cnum);
-
-            // Final send of 2 cards value (suit + value) to be outputted as ASCII cards
-            printAsciiEval(ccard, ucard);
-
-            // Checks if user card value is greater than computer card value
-            if (unum > cnum){
-                System.out.println("User wins!");
-            }
-
-            // Checks if computer card value is greater than user card value
-            else if (cnum > unum){
-                System.out.println("Computer wins!");
-            }
-
-            // Checks if user card value and computer card value is equal
-            // If so, declare a 'war'
-            if (unum == cnum){
-                System.out.println("User and computer cards are equal!");
-                System.out.println("A war has started, 4 cards have been placed face-down.");
-                System.out.println("The winner of the next two cards will take all.");
-            }
+            //add game over screen here
             
-
-            // Asks user if they want to play again, which determines if it loops again or not
-            System.out.println("Type y to continue to next round.");
-            again = scanner.nextLine();
         }
     }
 
