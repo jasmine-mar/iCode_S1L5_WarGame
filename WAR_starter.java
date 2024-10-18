@@ -86,8 +86,27 @@ public class WAR_starter {
             // Final send of 2 cards value (suit + value) to be outputted as ASCII cards
             printAsciiEval(ccard, ucard);
 
+            // Checks if user card value is greater than computer card value
+            if (unum > cnum){
+                System.out.println("User wins!");
+            }
+
+            // Checks if computer card value is greater than user card value
+            else if (cnum > unum){
+                System.out.println("Computer wins!");
+            }
+
+            // Checks if user card value and computer card value is equal
+            // If so, declare a 'war'
+            if (unum == cnum){
+                System.out.println("User and computer cards are equal!");
+                System.out.println("A war has started, 4 cards have been placed face-down.");
+                System.out.println("The winner of the next two cards will take all.");
+            }
+            
+
             // Asks user if they want to play again, which determines if it loops again or not
-            System.out.println("Do you want to play again?");
+            System.out.println("Type y to continue to next round.");
             again = scanner.nextLine();
         }
     }
